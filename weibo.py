@@ -83,7 +83,9 @@ class weibo:
 				return None
 
 if __name__ == '__main__':
-	w = weibo('602556029@qq.com', 'hu360602')
+	username = raw_input('username:')
+	password = raw_input('password:')
+	w = weibo(username, password)
 	while(1):
 		t = time.localtime()	
 		while (t.tm_min == 0):
