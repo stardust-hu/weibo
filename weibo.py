@@ -85,7 +85,7 @@ class weibo:
 if __name__ == '__main__':
 	w = weibo('602556029@qq.com', 'hu360602')
 	while(1):
-		t = time.localtime()		
-		text = u'#打更机器人#当前时间%d年%d月%d日%d时%d分%d秒' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
-		w.update(text)
-		time.sleep(60)
+		t = time.localtime()	
+		while (t.tm_min == 0):
+			text = u'#打更机器人#当前时间%d年%d月%d日%d时%d分%d秒' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
+			w.update(text)
