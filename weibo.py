@@ -9,8 +9,10 @@ class weibo:
 		self.__password = password
 		try:
 			self.cookies = self.__login__().cookies
+			self.status = True
 		except:
 			self.cookies = None
+			self.status = False
 
 	def __login__(self):
 		url = r'https://passport.weibo.cn/sso/login'
@@ -70,6 +72,7 @@ class weibo:
 			return response
 		except:
 			try:
+				time.sleep(10)
 				try:
 					self.cookies = self.__login__().cookies
 				except:
@@ -88,6 +91,9 @@ if __name__ == '__main__':
 	w = weibo(username, password)
 	while(1):
 		t = time.localtime()	
+		if(w.status == False):
+			print u'已退出'
+			return 0
 		if ((t.tm_min == 0) and (t.tm_sec == 0)):
 			text = u'#打更机器人#当前时间%d年%d月%d日%d时%d分%d秒' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
 			w.update(text)
