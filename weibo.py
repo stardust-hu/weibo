@@ -110,14 +110,31 @@ if __name__ == '__main__':
 	username = raw_input('username:')
 	password = raw_input('password:')
 	w = weibo(username, password)
+
+	with open('text.data', 'r') as f:
+		t_txt = f.readlines()
+	count = 0
+	
 	while(1):
 		t = time.localtime()	
 		if(w.status == False):
 			print u'已退出'
 			return 0
 		if ((t.tm_min == 0) and (t.tm_sec == 0)):
-			text = u'#打更机器人#当前时间%d年%d月%d日%d时%d分%d秒' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
+			if (t.tm_hour == 8):
+				text = u'#早安#【小王子】' + t_txt[count].decode('utf8')
+				count = count + 2
+			else if (t.tm_hour == 22):
+				text = u'#晚安#【小王子】' + t_txt[count].decode('utf8')
+				count = count +2
+			else:
+				text = u'#打更机器人#当前时间%d年%d月%d日%d时%d分%d秒' % (t.tm_year, t.tm_mon, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec)
+			
 			w.update(text)
-			time.sleep((t_unix+60*60)+2 - time.time())	# 59*60-10
+
+			if (count>=len(t_txt)):
+				count = 0
+			time.sleep((t_unix+60*60)+2 - time.time())	
+
 
 
