@@ -137,4 +137,4 @@ if __name__ == '__main__':
 
 			if (count>=len(t_txt)):
 				count = 0
-			time.sleep((t_unix+60*60)+2 - time.time())	
+			time.sleep((t_unix+60*60) - time.time() - 2)	
