@@ -1,3 +1,5 @@
+#coding:utf-8
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 #                    _ooOoo_
 #                   o8888888o
 #                   88" . "88
@@ -19,7 +21,6 @@
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 #          佛祖保佑       永无BUG
 
-#coding:utf-8
 import requests
 import json
 import time
@@ -114,17 +115,18 @@ if __name__ == '__main__':
 	with open('text.data', 'r') as f:
 		t_txt = f.readlines()
 	count = 0
-	
+
 	while(1):
 		t = time.localtime()	
 		if(w.status == False):
 			print u'已退出'
-			return 0
+			# return 0
+			break
 		if ((t.tm_min == 0) and (t.tm_sec == 0)):
 			if (t.tm_hour == 8):
 				text = u'#早安#【小王子】' + t_txt[count].decode('utf8')
 				count = count + 2
-			else if (t.tm_hour == 22):
+			elif (t.tm_hour == 22):
 				text = u'#晚安#【小王子】' + t_txt[count].decode('utf8')
 				count = count +2
 			else:
@@ -135,6 +137,3 @@ if __name__ == '__main__':
 			if (count>=len(t_txt)):
 				count = 0
 			time.sleep((t_unix+60*60)+2 - time.time())	
-
-
-
