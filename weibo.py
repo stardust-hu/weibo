@@ -117,7 +117,8 @@ if __name__ == '__main__':
 	count = 0
 
 	while(1):
-		t = time.localtime()	
+		t_unix = time.time()
+		t = time.localtime(t_unix)
 		if(w.status == False):
 			print u'已退出'
 			# return 0
